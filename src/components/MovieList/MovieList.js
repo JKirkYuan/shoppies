@@ -9,7 +9,6 @@ const MovieList = ({
   movieNominations,
 }) => {
   const includes = (movie) => {
-    console.log(searchList)
     for (let i = 0; i < movieNominations.length; i++) {
       if (
         movieNominations[i].Title === movie.Title &&
