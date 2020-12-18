@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Cabin Bold';
+  src: url('./Cabin-Bold.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Italic';
+  src: url('./Cabin-Italic.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Medium';
+  src: url('./Cabin-Medium.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Medium Italic';
+  src: url('./Cabin-MediumItalic.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Regular';
+  src: url('./Cabin-Regular.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Semi Bold';
+  src: url('./Cabin-SemiBold.ttf') format('ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin Semi Bold Italic';
+  src: url('./Cabin-SemiBoldItalic.ttf') format('ttf');
+  font-style: normal;
+}

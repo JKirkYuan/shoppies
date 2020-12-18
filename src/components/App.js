@@ -15,7 +15,7 @@ function App() {
   const addNomination = (movie) => {
     setState((prevState) => ({
       ...prevState,
-      nominations: [movie, ...prevState.nominations],
+      nominations: [...prevState.nominations, movie],
     }))
   }
 

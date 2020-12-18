@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from 'components/globals'
+import { Container, Button } from 'components/globals'
 
 const MovieList = ({
   searchTerm,
@@ -37,12 +37,12 @@ const MovieList = ({
         {validSearchList.map((movie) => (
           <li key={movie.Title + movie.Year}>
             {movie.Title} ({movie.Year}){' '}
-            <button
+            <Button
               onClick={() => addNomination(movie)}
               disabled={movie.canNominate}
             >
               Nominate
-            </button>
+            </Button>
           </li>
         ))}
       </MovieListContainer>

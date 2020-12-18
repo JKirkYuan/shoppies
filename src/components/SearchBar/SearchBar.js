@@ -17,6 +17,7 @@ const SearchBar = ({ handleSearch }) => {
           <StyledSearchIcon onClick={() => handleSearch(searchUrl)} />
         </StyledSpan>
         <StyledInput
+          placeholder="Blade Runner 2049..."
           value={searchUrl}
           onChange={(e) => {
             searchUrlUpdated(e.target.value)

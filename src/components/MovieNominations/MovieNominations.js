@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Container } from 'components/globals'
+import { Container, Button } from 'components/globals'
 
 const MovieNominations = ({ movieNominations, removeNomination }) => {
   return (
@@ -10,7 +10,7 @@ const MovieNominations = ({ movieNominations, removeNomination }) => {
         {movieNominations.map((movie) => (
           <li key={movie.Title + movie.Year}>
             {movie.Title} ({movie.Year}){' '}
-            <button onClick={() => removeNomination(movie)}>Remove</button>
+            <Button onClick={() => removeNomination(movie)}>Remove</Button>
           </li>
         ))}
       </NominationsContainer>
