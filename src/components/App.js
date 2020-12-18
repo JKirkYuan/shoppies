@@ -30,7 +30,7 @@ function App() {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const apiLink = `http://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie`
+      const apiLink = `https://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie`
       await axios
         .get(apiLink)
         .then((res) => {
