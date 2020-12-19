@@ -33,12 +33,11 @@ const StyledContainer = styled(animated.div)`
   justify-content: center;
 
   @media (min-width: ${(props) => props.theme.screen.md}) {
-    width: 220px;
+    width: auto;
     height: 60px;
     border-radius: 5px;
     right: 10px;
     top: 92vh;
-    justify-content: space-evenly;
   }
 `
 
