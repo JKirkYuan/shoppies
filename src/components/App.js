@@ -18,6 +18,7 @@ function App() {
       ? JSON.parse(localStorage.getItem('nominations'))
       : [],
   })
+  const [errorState, setErrorState] = React.useState(null)
   const apiKey = process.env.REACT_APP_API_KEY
 
   const addNomination = (movie) => {
@@ -55,6 +56,9 @@ function App() {
             ...prevState,
             searchList: res.data.Search,
           }))
+          setErrorState(null)
+        } else {
+          setErrorState(res.data.Error)
         }
       })
     }
@@ -80,6 +84,7 @@ function App() {
             searchList={state.searchList}
             movieNominations={state.nominations}
             addNomination={addNomination}
+            hasError={errorState}
           />
           <MovieNominations
             movieNominations={state.nominations}

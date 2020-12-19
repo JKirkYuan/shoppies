@@ -7,7 +7,16 @@ const MovieList = ({
   searchList,
   addNomination,
   movieNominations,
+  hasError,
 }) => {
+  if (hasError) {
+    return (
+      <StyledContainer>
+        <h3>{hasError}</h3>
+      </StyledContainer>
+    )
+  }
+
   const includes = (movie) => {
     for (let i = 0; i < movieNominations.length; i++) {
       if (movieNominations[i].imdbID === movie.imdbID) {
