@@ -10,7 +10,8 @@ import Banner from 'components/Banner/Banner'
 
 function App() {
   const [search, handleSearch] = React.useState('')
-  const [visible, changeVisible] = React.useState(false)
+  const [visible, handleVisible] = React.useState(false)
+  const [easterEgg, handleEaster] = React.useState(false)
   const [state, setState] = React.useState({
     searchList: [],
     nominations: localStorage.getItem('nominations')
@@ -26,8 +27,13 @@ function App() {
     }))
 
     if (state.nominations.length === 4) {
-      changeVisible(true)
-      setTimeout(() => changeVisible(false), 4000)
+      handleVisible(true)
+      setTimeout(() => handleVisible(false), 6000)
+    }
+
+    if (movie.Title === 'Blade Runner 2049') {
+      handleEaster(true)
+      setTimeout(() => handleEaster(false), 3000)
     }
   }
 
@@ -43,17 +49,14 @@ function App() {
   React.useEffect(() => {
     const fetchData = async () => {
       const apiLink = `https://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie`
-      await axios
-        .get(apiLink)
-        .then((res) => {
+      await axios.get(apiLink).then((res) => {
+        if (!res.data.Error) {
           setState((prevState) => ({
             ...prevState,
             searchList: res.data.Search,
           }))
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+        }
+      })
     }
     if (search !== '') {
       fetchData()
@@ -84,7 +87,10 @@ function App() {
           />
         </ResultsSection>
       </Layout>
-      <Banner visible={visible}>And that's 5!</Banner>
+      <Banner visible={visible}>And that's 5! </Banner>
+      <Banner visible={easterEgg}>
+        My favorite movie! I wrote a paper on the ethics of replicants recently
+      </Banner>
     </>
   )
 }
