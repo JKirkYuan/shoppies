@@ -10,10 +10,7 @@ const MovieList = ({
 }) => {
   const includes = (movie) => {
     for (let i = 0; i < movieNominations.length; i++) {
-      if (
-        movieNominations[i].Title === movie.Title &&
-        movieNominations[i].Year === movie.Year
-      ) {
+      if (movieNominations[i].imdbID === movie.imdbID) {
         return true
       }
     }
@@ -28,7 +25,7 @@ const MovieList = ({
       )}
       <MovieListContainer>
         {searchList.map((movie) => (
-          <li key={movie.Title + movie.Year}>
+          <li key={movie.imdbID}>
             {movie.Title} ({movie.Year}){' '}
             <Button
               onClick={() => addNomination(movie)}

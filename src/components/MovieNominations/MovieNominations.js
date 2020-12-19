@@ -3,36 +3,28 @@ import styled from 'styled-components'
 import { Container, Button } from 'components/globals'
 
 const MovieNominations = ({ movieNominations, removeNomination }) => {
+  const subsetList = (start, end) => {
+    const movieList = movieNominations.slice(start, end)
+    return (
+      <NominationsContainer>
+        {movieList.map((movie) => (
+          <li key={movie.imdbID}>
+            {movie.Title} ({movie.Year}){' '}
+            <Button onClick={() => removeNomination(movie)}>Remove</Button>
+          </li>
+        ))}
+      </NominationsContainer>
+    )
+  }
+
   return (
     <StyledContainer>
       <h3>Nominations</h3>
-      <NominationsContainer>
-        {movieNominations.map((movie, i) => {
-          if (i <= 4)
-            return (
-              <li key={movie.Title + movie.Year}>
-                {movie.Title} ({movie.Year}){' '}
-                <Button onClick={() => removeNomination(movie)}>Remove</Button>
-              </li>
-            )
-        })}
-      </NominationsContainer>
+      {subsetList(0, 5)}
       {movieNominations.length > 5 && (
         <>
           <h3>The Extras</h3>
-          <NominationsContainer>
-            {movieNominations.map((movie, i) => {
-              if (i > 4)
-                return (
-                  <li key={movie.Title + movie.Year}>
-                    {movie.Title} ({movie.Year}){' '}
-                    <Button onClick={() => removeNomination(movie)}>
-                      Remove
-                    </Button>
-                  </li>
-                )
-            })}
-          </NominationsContainer>
+          {subsetList(5, movieNominations.length)}
         </>
       )}
     </StyledContainer>

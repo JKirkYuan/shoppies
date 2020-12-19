@@ -90,10 +90,9 @@ function App() {
 }
 
 const ResultsSection = styled.section`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  grid-gap: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 25px;
   max-width: 100%;
 `
 

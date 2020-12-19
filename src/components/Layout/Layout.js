@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
 }
 
 const StyledContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   max-width: 100vw;
   padding: 20px;
   background-color: ${(props) => props.theme.color.background.main};

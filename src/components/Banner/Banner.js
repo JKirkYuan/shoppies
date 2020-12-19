@@ -4,7 +4,7 @@ import { useSpring, animated } from 'react-spring'
 import { IoCheckmarkCircleOutline } from 'react-icons/io5'
 
 const Banner = ({ visible, children }) => {
-  const props = useSpring({
+  const animate = useSpring({
     to: { opacity: visible ? 1 : 0 },
     from: { opacity: 0 },
     tension: 280,
@@ -12,7 +12,7 @@ const Banner = ({ visible, children }) => {
   })
 
   return (
-    <StyledContainer style={props}>
+    <StyledContainer style={animate}>
       <Icon />
       <Textbox>{children}</Textbox>
     </StyledContainer>
@@ -23,10 +23,10 @@ const StyledContainer = styled(animated.div)`
   background-color: ${(props) => props.theme.color.background.light};
   box-shadow: 0px 1px 2px 1px #ccc;
   padding: 20px;
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 50px;
-  bottom: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,7 +37,7 @@ const StyledContainer = styled(animated.div)`
     height: 60px;
     border-radius: 5px;
     right: 10px;
-    bottom: 10px;
+    top: 92vh;
     justify-content: space-evenly;
   }
 `
