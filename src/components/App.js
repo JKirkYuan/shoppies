@@ -11,7 +11,12 @@ import Banner from 'components/Banner/Banner'
 function App() {
   const [search, handleSearch] = React.useState('')
   const [visible, changeVisible] = React.useState(false)
-  const [state, setState] = React.useState({ searchList: [], nominations: [] })
+  const [state, setState] = React.useState({
+    searchList: [],
+    nominations: localStorage.getItem('nominations')
+      ? JSON.parse(localStorage.getItem('nominations'))
+      : [],
+  })
   const apiKey = process.env.REACT_APP_API_KEY
 
   const addNomination = (movie) => {
@@ -54,6 +59,10 @@ function App() {
       fetchData()
     }
   }, [search])
+
+  React.useEffect(() => {
+    localStorage.setItem('nominations', JSON.stringify(state.nominations))
+  }, [state.nominations])
 
   return (
     <>
