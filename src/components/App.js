@@ -6,9 +6,11 @@ import Layout from 'components/Layout/Layout'
 import SearchBar from 'components/SearchBar/SearchBar'
 import MovieList from 'components/MovieList/MovieList'
 import MovieNominations from 'components/MovieNominations/MovieNominations'
+import Banner from 'components/Banner/Banner'
 
 function App() {
   const [search, handleSearch] = React.useState('')
+  const [visible, changeVisible] = React.useState(false)
   const [state, setState] = React.useState({ searchList: [], nominations: [] })
   const apiKey = process.env.REACT_APP_API_KEY
 
@@ -17,6 +19,11 @@ function App() {
       ...prevState,
       nominations: [...prevState.nominations, movie],
     }))
+
+    if (state.nominations.length === 4) {
+      changeVisible(true)
+      setTimeout(() => changeVisible(false), 4000)
+    }
   }
 
   const removeNomination = (movie) => {
@@ -49,24 +56,27 @@ function App() {
   }, [search])
 
   return (
-    <Layout>
-      <h1>The Shoppies</h1>
-      <Container>
-        <SearchBar handleSearch={handleSearch} />
-      </Container>
-      <ResultsSection>
-        <MovieList
-          searchTerm={search}
-          searchList={state.searchList}
-          movieNominations={state.nominations}
-          addNomination={addNomination}
-        />
-        <MovieNominations
-          movieNominations={state.nominations}
-          removeNomination={removeNomination}
-        />
-      </ResultsSection>
-    </Layout>
+    <>
+      <Layout>
+        <h1>The Shoppies</h1>
+        <Container>
+          <SearchBar handleSearch={handleSearch} />
+        </Container>
+        <ResultsSection>
+          <MovieList
+            searchTerm={search}
+            searchList={state.searchList}
+            movieNominations={state.nominations}
+            addNomination={addNomination}
+          />
+          <MovieNominations
+            movieNominations={state.nominations}
+            removeNomination={removeNomination}
+          />
+        </ResultsSection>
+      </Layout>
+      <Banner visible={visible}>And that's 5!</Banner>
+    </>
   )
 }
 

@@ -4,6 +4,19 @@ import { IoIosSearch } from 'react-icons/io'
 
 const SearchBar = ({ handleSearch }) => {
   const [searchUrl, searchUrlUpdated] = React.useState('')
+  const debounce = (func, wait) => {
+    let timeout
+
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
+  }
   return (
     <form
       onSubmit={(e) => {

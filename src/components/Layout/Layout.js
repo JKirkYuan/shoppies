@@ -1,20 +1,13 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-
-import theme from 'styles/theme'
-import 'static/fonts/fonts.css'
+import styled from 'styled-components'
 
 const Layout = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <StyledContainer>{children}</StyledContainer>
-    </ThemeProvider>
-  )
+  return <StyledContainer>{children}</StyledContainer>
 }
 
 const StyledContainer = styled.div`
+  height: 100vh;
   max-width: 100vw;
-  min-height: 100vh;
   padding: 20px;
   background-color: ${(props) => props.theme.color.background.main};
 

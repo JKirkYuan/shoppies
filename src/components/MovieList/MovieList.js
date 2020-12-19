@@ -19,13 +19,6 @@ const MovieList = ({
     }
   }
 
-  const validSearchList = searchList.map((movie) => {
-    return {
-      ...movie,
-      canNominate: includes(movie),
-    }
-  })
-
   return (
     <StyledContainer>
       {searchTerm === '' ? (
@@ -34,12 +27,12 @@ const MovieList = ({
         <h3>Results for "{searchTerm}"</h3>
       )}
       <MovieListContainer>
-        {validSearchList.map((movie) => (
+        {searchList.map((movie) => (
           <li key={movie.Title + movie.Year}>
             {movie.Title} ({movie.Year}){' '}
             <Button
               onClick={() => addNomination(movie)}
-              disabled={movie.canNominate}
+              disabled={includes(movie)}
             >
               Nominate
             </Button>

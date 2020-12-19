@@ -11,6 +11,9 @@ export const Container = styled.div`
 `
 
 export const Button = styled.button`
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
   background: linear-gradient(
     180deg,
     ${(props) => props.theme.color.white.regular},
@@ -18,5 +21,9 @@ export const Button = styled.button`
   );
   border-radius: 3px;
   border: 1px solid ${(props) => props.theme.color.black.lightest};
-  height: 30px;
+
+  @media (min-width: ${(props) => props.theme.screen.md}) {
+    width: 85px;
+    margin: 0;
+  }
 `
