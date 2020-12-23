@@ -18,6 +18,7 @@ function App() {
       ? JSON.parse(localStorage.getItem('nominations'))
       : [],
   })
+  const [page, setPage] = React.useState(1)
   const [errorState, setErrorState] = React.useState(null)
   const apiKey = process.env.REACT_APP_API_KEY
 
@@ -47,9 +48,16 @@ function App() {
     }))
   }
 
+  const updatePage = (number) => {
+    if (!search) return
+    if (page + number <= 0) return
+
+    setPage(page + number)
+  }
+
   React.useEffect(() => {
     const fetchData = async () => {
-      const apiLink = `https://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie`
+      const apiLink = `https://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie&page=${page}`
       await axios.get(apiLink).then((res) => {
         if (!res.data.Error) {
           setState((prevState) => ({
@@ -65,7 +73,7 @@ function App() {
     if (search !== '') {
       fetchData()
     }
-  }, [search])
+  }, [search, page])
 
   React.useEffect(() => {
     localStorage.setItem('nominations', JSON.stringify(state.nominations))
@@ -85,6 +93,7 @@ function App() {
             movieNominations={state.nominations}
             addNomination={addNomination}
             hasError={errorState}
+            updatePage={updatePage}
           />
           <MovieNominations
             movieNominations={state.nominations}
@@ -105,6 +114,11 @@ const ResultsSection = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-gap: 25px;
   max-width: 100%;
+
+  @media (max-width: ${(props) => props.theme.screen.xs}) {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
 `
 
 export default App

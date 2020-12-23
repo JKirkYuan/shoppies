@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container, Button } from 'components/globals'
+import {
+  IoChevronForwardCircleOutline,
+  IoChevronBackCircleOutline,
+} from 'react-icons/io5'
 
 const MovieList = ({
   searchTerm,
@@ -8,6 +12,7 @@ const MovieList = ({
   addNomination,
   movieNominations,
   hasError,
+  updatePage,
 }) => {
   if (hasError) {
     return (
@@ -27,11 +32,19 @@ const MovieList = ({
 
   return (
     <StyledContainer>
-      {searchTerm === '' ? (
-        <h3>Enter a movie to see results</h3>
-      ) : (
-        <h3>Results for "{searchTerm}"</h3>
-      )}
+      <TitleContainer>
+        <div>
+          {searchTerm === '' ? (
+            <h3>Enter a movie to see results</h3>
+          ) : (
+            <h3>Results for "{searchTerm}"</h3>
+          )}
+        </div>
+        <PageButtonContainer>
+          <BackButton onClick={() => updatePage(-1)} />
+          <ForwardButton onClick={() => updatePage(1)} />
+        </PageButtonContainer>
+      </TitleContainer>
       <MovieListContainer>
         {searchList.map((movie) => (
           <li key={movie.imdbID}>
@@ -53,10 +66,36 @@ const StyledContainer = styled(Container)`
   padding: 10px 20px 10px 20px;
 `
 
+const TitleContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const MovieListContainer = styled.ul`
   li {
     padding-bottom: 10px;
   }
+`
+const PageButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row nowrap;
+  margin: 0;
+  width: 30%;
+`
+
+const BackButton = styled(IoChevronBackCircleOutline)`
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+`
+
+const ForwardButton = styled(IoChevronForwardCircleOutline)`
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 `
 
 export default MovieList
