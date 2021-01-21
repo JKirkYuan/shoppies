@@ -55,6 +55,11 @@ function App() {
     setPage(page + number)
   }
 
+  const searchUpdate = (value) => {
+    setPage(1)
+    handleSearch(value)
+  }
+
   React.useEffect(() => {
     const fetchData = async () => {
       const apiLink = `https://www.omdbapi.com/?s=${search}&apikey=${apiKey}&movie&page=${page}`
@@ -84,7 +89,7 @@ function App() {
       <Layout>
         <h1>The Shoppies</h1>
         <Container>
-          <SearchBar handleSearch={handleSearch} />
+          <SearchBar handleSearch={searchUpdate} />
         </Container>
         <ResultsSection>
           <MovieList
