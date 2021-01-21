@@ -72,6 +72,9 @@ function App() {
           setErrorState(null)
         } else {
           setErrorState(res.data.Error)
+          if (page > 0) {
+            setPage(1)
+          }
         }
       })
     }
